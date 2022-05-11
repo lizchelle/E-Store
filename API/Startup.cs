@@ -32,7 +32,7 @@ namespace API
             {
                 opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection")); 
             });
-
+          
             
         }
 
@@ -49,7 +49,11 @@ namespace API
             //app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors(opt =>
+            {
+                opt.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3001");
+            });
+           
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
