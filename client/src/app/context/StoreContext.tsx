@@ -16,7 +16,7 @@ export function useStoreContext() {
         throw Error ('Oops - we do not seem to be inside the provider');
     }
 
-    return context;
+    return context;  
 }
 
 export function StoreProvider({children}: PropsWithChildren<any>) {
