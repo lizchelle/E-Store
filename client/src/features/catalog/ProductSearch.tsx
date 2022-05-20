@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from "../../app/ store/configureStore"
 import { setProductParams } from "./catalogSlice";
 
 export default function ProductSearch(){
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const {productParams} = useAppSelector(state => state.catalog);
     const [searchTerm, setSearchTerm] = useState(productParams.searchTerm);
     const dispatch = useAppDispatch();
