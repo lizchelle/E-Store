@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Extensions
 {
@@ -12,7 +9,7 @@ namespace API.Extensions
     {
         public static BasketDto MapBasketToDto(this Basket basket)
         {
-             return new BasketDto
+            return new BasketDto
             {
                 Id = basket.Id,
                 BuyerId = basket.BuyerId,
@@ -27,6 +24,11 @@ namespace API.Extensions
                     Quantity = item.Quantity
                 }).ToList()
             };
+        }
+
+        public static IQueryable<Basket> RetrieveBasketWithItems(this IQueryable<Basket> query, string buyerId)
+        {
+            return query.Include(i => i.Items).ThenInclude(p => p.Product).Where(b => b.BuyerId == buyerId);
         }
     }
 }
